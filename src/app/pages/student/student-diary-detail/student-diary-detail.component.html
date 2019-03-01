@@ -1,0 +1,111 @@
+<body>
+    <form (keydown.enter)="$event.preventDefault()" [formGroup]='diaryDetailForm'>
+        <div>
+            <h3 class="glyphicon glyphicon-list-alt glyph"> วิชา: {{diaryDetail.subjectName}}</h3>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+
+                <!-- เงื่อนไข ถ้าส่งแล้ว รหัส 100-->
+                <div *ngIf="diaryDetail.statusId == 100">
+                    <card cardTitle="" isCollapse="true">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label class="control-label">
+                                    <h2>หัวข้อ : {{diaryDetail.diaryTitle}}</h2>
+                                </label>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="control-label">
+                                    <h4>ประจำวันที่ : {{diaryDetail.dateWardToString}}</h4>
+                                </label>
+                            </div>
+
+                            <textarea cols="0" rows="10" class="form-control" [(ngModel)]="diaryDetail.diaryContent" formControlName="content" placeholder="Textarea"
+                                readonly></textarea>
+
+                            <div class="col-md-12">
+                                <label class="control-label">
+                                    <h4>คำสำคัญ</h4>
+                                </label>
+                            </div>
+
+                            <div class="tagsinput mt-2">
+                                <div class="tagsinput-add-container">
+                                </div>
+                                <div class="tag" *ngFor="let data of showtag">
+                                    <span>{{data}}&nbsp;&nbsp;</span>
+                                </div>
+                            </div>
+
+                            <div>          
+                                  <img src="{{diaryDetail.diaryPictureDetials.picName}}">                              
+                            </div>
+                        </div>
+                    </card>
+                    <h3 class="glyphicon glyphicon-comment glyph"> แสดงความคิดเห็น</h3>
+                    <div *ngFor="let item of comment ;let index = index">
+                        <div class="dialogbox">
+                            <div class="body">
+                                <div class="message">
+                                    <span>{{item.commentContent}}</span>
+                                    <br>
+                                    <span style="font-size: 12px">{{item.dateComment}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- เงื่อนไข ถ้าบันทึก รหัส 200 -->
+                <div *ngIf="diaryDetail.statusId == 200">
+                    <card cardTitle="" isCollapse="true">
+                        <div class="form-group">
+                            <label class="control-label">หัวข้อ</label>
+                            <input type="text" class="form-control" [(ngModel)]="diaryDetail.diaryTitle" formControlName="title" placeholder="" autofocus>
+                            <label class="control-label">วันที่ขึ้นวอร์ด</label>
+                            <div>
+                                <input type="date" class="col-md-6 form-control" [(ngModel)]="dateSendingToServer"  formControlName="dateward" placeholder="Text Input">
+                                
+                              
+                            </div>
+                            <label class="control-label"></label>
+                            <textarea cols="0" rows="10" class="form-control" [(ngModel)]="diaryDetail.diaryContent" formControlName="content" placeholder="Textarea"></textarea>
+
+                            <label class="control-label">คำสำคัญ</label>
+
+                            <div class="tagsinput mt-2">
+                                <div class="tagsinput-add-container" id="tagsinput_addTag">
+                                    <div class="tagsinput-add"></div>
+                                    <input type="text" class="form-control" (keyup.enter)="addtag(0,tagValue)" [(ngModel)]="tagValue" formControlName="tag">
+                                </div>
+                                <br>
+                                <div class="tag" *ngFor="let data of ServiceType">
+                                    <span (click)="removetag(data)">{{data}}&nbsp;&nbsp;
+                                        <i class="fa fa-times"></i>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <label class="control-label">รูปภาพ</label>
+                        <label class="image-upload-container btn btn-bwm">                            
+                            <input #imageInput
+                                   type="file"
+                                   accept="image/*"
+                                   (change)="processFile(imageInput)">
+                          </label>
+
+                            <div>          
+                                <img src="{{diaryDetail.diaryPictureDetials.picName}}">                              
+                          </div>
+                        </div>
+                        <button class="btn btn-success pull-right" style="margin-right: 10px" (click)="successDiary()">ส่งไดอารี่</button>
+                        <button class="btn btn-warning pull-right" style="margin-right: 10px" (click)="updateDiary()">บันทึกการแก้ไข</button>
+                        
+                    </card>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>

@@ -1,0 +1,49 @@
+<div class="row">
+  <form [formGroup]="subjectForm">
+    <div class="col-md-12">
+
+      <div class="row card card-block">
+        <div class="col-md-12 form-group">
+          <label class="control-label">วิชา</label>
+          <input type="text" class="form-control" ng-trim="true" [(ngModel)]="subjectData.subjectName" formControlName="subjectName" placeholder="ชื่อ">
+        </div>
+
+        <div class="col-md-12 form-group">
+          <label class="control-label">อาจารย์ประจำวิชา {{ name }}</label>
+
+        </div>
+
+        <div class="col-md-12 form-group">
+          <label class="control-label">อาจารย์ผู้ช่วย</label>
+
+          <div formArrayName="items" *ngFor="let item of items.controls; let i = index;">
+            <div [formGroupName]="i">
+              <div class="col-md-11">
+                <select name="select" id="select1"  formControlName="teacherId"  class="col-md-10 form-control">
+                  <option *ngFor="let user of listTeacher" [ngValue]="user.userId">
+                    {{user.firstname}} {{user.lastname}}
+                  </option>
+                </select>
+              </div>
+              <div class="col-md-1">
+                <button class="btn btn-danger center-block" style="border-radius:50% " (click)="deleteItem(item)">X</button>
+                <br>
+              </div>
+            </div>
+            
+          </div>
+          <div class="col-md-12">
+            <button class="btn btn-success center-block" style="border-radius: 50% " type="button" (click)="addItem()">+</button>
+          </div>
+        </div>
+
+
+
+        <div class="col-md-12">
+          <button class="btn btn-success " (click)="createSubject()">ตกลง</button>
+        </div>
+
+      </div>
+    </div>
+  </form>
+</div>

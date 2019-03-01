@@ -1,0 +1,47 @@
+<body>
+    <form (keydown.enter)="$event.preventDefault()" [formGroup]='diaryCreateForm'>
+        <div>
+           <h2 class="glyphicon glyphicon-list-alt glyph"> วิชา: {{subjectDetail.subjectName}}</h2>          
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <card cardTitle="" isCollapse="true">
+                    <div class="form-group">
+                        <label class="control-label">หัวข้อ</label>
+                        <input type="text" class="form-control" [(ngModel)]="diaryCreateData.diaryTitle" formControlName="title" placeholder="" autofocus>
+                        <label class="control-label">วันที่ขึ้นวอร์ด</label>
+                        <div>
+                            <input type="date" class="col-md-6 form-control" [(ngModel)]="diaryCreateData.dateWard" formControlName="dateward" placeholder="Text Input">
+                        </div>
+                        <label class="control-label"></label>
+                        <textarea cols="0" rows="10" class="form-control" [(ngModel)]="diaryCreateData.diaryContent" formControlName="content" placeholder="Textarea"></textarea>
+
+                        <label class="control-label">คำสำคัญ</label>
+                        <div class="tagsinput mt-2">
+                            <div class="tagsinput-add-container" id="tagsinput_addTag">
+                                <div class="tagsinput-add"></div>
+                                <input type="text" class="form-control" (keyup.enter)="addtag(0,tagValue)" [(ngModel)]="tagValue" formControlName="tag">
+                            </div>
+                            <br>
+                            <div class="tag" *ngFor="let data of ServiceType">
+                                <span (click)="removetag(data)">{{data}}&nbsp;&nbsp;
+                                    <i class="fa fa-times"></i>
+                                </span>
+                            </div>
+                        </div>
+
+                        <label class="control-label">รูปภาพ</label>
+                        <label class="image-upload-container btn btn-bwm">                            
+                            <input #imageInput
+                                   type="file"
+                                   accept="image/*"
+                                   (change)="processFile(imageInput)">
+                          </label>
+                          
+                    </div>
+                    <button class="btn btn-success pull-right" style="margin-right: 10px" (click)="CreateDiary()">บันทึก</button>
+                </card>
+            </div>
+        </div>
+    </form>
+</body>

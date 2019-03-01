@@ -1,0 +1,39 @@
+<body>
+  <form (keydown.enter)="$event.preventDefault()" [formGroup]='multipleInsert'>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row card card-block">
+          
+          <div class="file-upload">
+              
+              <!-- <input type="file"  > -->
+              <div class="image-upload-wrap">
+                <input class="file-upload-input" type='file'  (change)="incomingfile($event)" placeholder="Upload file" accept=".xlsx" />
+                <div class="drag-text">
+                  <h3>Drag and drop a file or select file</h3>
+                </div>
+              </div>
+              <br>
+              <button class="file-upload-btn" type="button">{{name}}</button>
+
+              <div class="col-md-12 form-group">       
+                  
+                </div>
+                <select name="select" id="select1" [(ngModel)]="userType" placeholder="รหัสประจำตัว" formControlName="type" class="form-control">
+                    <option value="202">อาจารย์</option>
+                    <option value="303">นักเรียน</option>
+                  </select>
+            </div>
+
+
+          
+
+          <div class="col-md-12">
+            <button class="btn btn-success pull-right" (click)="Ok()">ตกลง</button>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </form>
+</body>

@@ -1,0 +1,30 @@
+<div class="row">
+  <form [formGroup]="mysubjectForm">
+    <div class="col-md-12 form-group">
+      <label class="control-label">
+        <h4>ประเภท</h4>
+      </label>
+      <select name="select" id="select" (change)="onItemChange($event.target.value)" formControlName="type" class="form-control">
+        <option>- - -</option>
+        <option *ngFor="let type of teachertypelist">
+          {{type}}
+        </option>
+      </select>
+    </div>
+  </form>
+
+  <div *ngFor="let item of subjectlistshow;let index = index">
+    <div class="col-md-6 animated fadeIn" (click)="onclickSubject(item.subjectId)" style="cursor: pointer;">
+      <div class="card card-block tip-card">
+        <div class="tip-msg">        
+          <span class="glyphicon glyphicon-list-alt glyph">  {{item.teacherType}} </span>  
+          <!-- <div > -->
+          <span class="btn pull-right glyphicon glyphicon-cog" (click)="onclickOption(item.subjectId)" *ngIf="item.teacherType == 'หัวหน้าวิชา'"></span> 
+        <!-- </div> -->
+          <h3>{{item.subjectName}}</h3>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

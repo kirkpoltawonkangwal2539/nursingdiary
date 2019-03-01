@@ -1,0 +1,46 @@
+
+<body>
+  <form (keydown.enter)="$event.preventDefault()" [formGroup]='insertForm'>
+<div class="row">
+  <!-- <div class="col-md-4">
+    <!-- <profile></profile> -->
+  <!-- </div>  -->
+  <div class="col-md-12">
+
+    <div class="row card card-block">
+      <div class="col-md-12 form-group">
+        <label class="control-label">ชื่อ</label>
+        <input type="text" class="form-control" id="firstname" [(ngModel)]="insertData.firstname" formControlName="firstname" placeholder="ชื่อ" >
+      </div>
+      
+      <div class="col-md-12 form-group">
+        <label class="control-label">นามสกุล</label>
+        <input type="text" class="form-control" [(ngModel)]="insertData.lastname" formControlName="lastname" placeholder="นามสกุล">
+      </div>
+
+      <div class="col-md-12 form-group">
+        <label class="control-label">รหัสประจำตัว</label>
+        <input type="text" class="form-control" [(ngModel)]="insertData.userId" formControlName="id" placeholder="รหัสประจำตัว">
+      </div>
+
+      <div class="col-md-12 form-group">
+        <label class="control-label">รหัสผ่าน</label>
+        <input type="text" class="form-control"  [(ngModel)]="insertData.password" formControlName="password" placeholder="รหัสผ่าน">
+      </div>
+
+      <div class="col-md-12 form-group">
+          <label class="control-label">ประเภท</label>
+          <select name="select" id="select1"  [(ngModel)]="insertData.typeId" formControlName="type" class="form-control">
+            <option value="202">อาจารย์</option>
+            <option value="303">นักเรียน</option>
+          </select>
+        </div>
+      <div class="col-md-12">
+      <button class="btn btn-success pull-right" (click)="InsertPersonalData()">ตกลง</button>
+      </div>
+      
+    </div>
+  </div>
+</div>
+  </form>
+</body>

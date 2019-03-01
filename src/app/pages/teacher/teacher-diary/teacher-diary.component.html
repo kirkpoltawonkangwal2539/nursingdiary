@@ -1,0 +1,39 @@
+<div class="row">
+  <form [formGroup]="diaryteacherForm">
+    <div class="col-md-12 form-group">
+      <label class="control-label">
+        <h4>วันที่</h4>
+      </label>
+      <select name="select" id="select" (change)="onItemChange($event.target.value)" formControlName="date" class="form-control">
+        <option>- - -</option>
+        <option *ngFor="let date of dateWardlist">
+          {{date}}
+        </option>
+      </select>
+    </div>
+  </form>
+
+  <div *ngFor="let item of diaryListShow;let index = index">
+    <div *ngIf="item.statusId == 100">
+      <div class="dialogboxgreen
+           col-md-6" (click)="onclickSubject(item.diaryId)" style="cursor: pointer;">
+        <div class="body">
+          <span class="glyphicon glyphicon-book glyph"> {{item.dateWard}}</span>
+          <h3>{{item.diaryTitle}}</h3>
+          <h4>{{item.studentName}}</h4>
+          <br>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="item.statusId == 200">
+      <div class="dialogboxred col-md-6"  style="cursor: not-allowed;">
+        <div class="body">
+          <span class="glyphicon glyphicon-book glyph"> {{item.dateWard}}</span>
+          <h3>{{item.diaryTitle}}</h3>
+          <h4>{{item.studentName}}</h4>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

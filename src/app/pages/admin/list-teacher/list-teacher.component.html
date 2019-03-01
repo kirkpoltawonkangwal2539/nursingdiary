@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-md-12">
+    <card cardTitle="รายชื่ออาจารย์">
+      <div class="col-md-12">
+
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>ลำดับ</th>
+              <th>รหัส</th>
+              <th>ชื่อ</th>
+              <th>นามสกุล</th>
+              <th></th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of listTeacher;let index = index">
+              <td>{{index + 1}}</td>
+              <td>{{item.userId}}</td>
+              <td>{{item.firstname}}</td>
+              <td>{{item.lastname}}</td>
+              <td>
+                <div class="col-md-12">
+                  <button class="btn btn-info" (click)="ResetPassword(item.userId)">รีเซ็ตรหัสผ่าน</button>
+                  <button class="btn btn-primary" (click)="EditTeacher(item.userId,item.typeId)">แก้ไข</button>
+                  <button class="btn btn-danger" (click)="DeleteTeacher(item.userId)">ลบ</button>
+                </div>
+              </td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </card>
+  </div>
+</div>

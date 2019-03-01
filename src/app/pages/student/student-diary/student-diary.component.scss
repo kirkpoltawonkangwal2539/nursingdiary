@@ -1,0 +1,29 @@
+.dialogboxred .body {
+    position: relative;
+   // max-width: 300px;
+    height: auto;
+    margin: 20px 10px;
+    padding: 10px;
+    //background-color: #B2DFDB;
+    border-radius: 3px;
+    border: 2px solid red;
+  }
+  .dialogboxgreen .body {
+    position: relative;
+   // max-width: 300px;
+    height: auto;
+    margin: 20px 10px;
+    padding: 10px;
+    //background-color: #B2DFDB;
+    border-radius: 3px;
+    border: 2px solid green;
+  }
+  .body .message {
+    min-height: 30px;
+    border-radius: 3px;
+    font-family: Arial;
+    font-size: 18px;
+    line-height: 1.5;
+    color:  #283593;
+    word-wrap:break-word;
+  }

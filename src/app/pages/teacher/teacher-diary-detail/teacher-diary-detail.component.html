@@ -1,0 +1,81 @@
+<body>
+    <form (keydown.enter)="$event.preventDefault()" [formGroup]='diaryDetailForm'>
+        <div>
+            <h3 class="glyphicon glyphicon-list-alt glyph"> วิชา: {{diaryDetail.subjectName}}</h3>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <card cardTitle="" isCollapse="true">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label class="control-label">
+                                <h2>หัวข้อ : {{diaryDetail.diaryTitle}}</h2>
+                            </label>
+                            <h3 class="pull-right glyphicon glyphicon-ok" *ngIf="diaryDetail.statusId == 100" style="color: green"></h3>
+                            <h3 class="pull-right glyphicon glyphicon-remove" *ngIf="diaryDetail.statusId == 200" style="color: red"></h3>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label class="control-label">
+                                <h4>ประจำวันที่ : {{diaryDetail.dateWardToString}}</h4>
+                            </label>
+                        </div>
+
+                        <textarea cols="0" rows="10" class="form-control" [(ngModel)]="diaryDetail.diaryContent" formControlName="content" placeholder="Textarea"
+                            readonly></textarea>
+
+                        <div class="col-md-12">
+                            <label class="control-label">
+                                <h4>คำสำคัญ</h4>
+                            </label>
+                        </div>
+
+                        <div class="tagsinput mt-2">
+                            <div class="tagsinput-add-container">
+                            </div>
+                            <div class="tag" *ngFor="let data of showtag">
+                                <span>{{data}}&nbsp;&nbsp;</span>
+                            </div>
+                        </div>
+
+                        <div>          
+                                <img src="{{diaryDetail.diaryPictureDetials.picName}}">                              
+                       </div>
+                    </div>
+                </card>
+
+                <div *ngIf="diaryDetail.statusId == 100">
+                    <h3 class="glyphicon glyphicon-comment glyph"> แสดงความคิดเห็น</h3>
+                    <form [formGroup]="commentForm">
+                        <card cardTitle="" isCollapse="true">
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <textarea cols="0" rows="10" class="form-control" [(ngModel)]="commentCreate.commentContent" formControlName="commentContent"
+                                        placeholder="Textarea"></textarea>
+                                    <br>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <button class="btn btn-success pull-right" style="margin-right: 10px" (click)="createComment()">แสดงความคิดเห็น</button>
+                            </div>
+                        </card>
+                    </form>
+
+                    <div *ngFor="let item of comment ;let index = index">
+                        <div class="dialogbox">
+                            <div class="body">
+                                <div class="message">
+                                    <h4 class="glyphicon glyphicon-user"> {{item.teacherName}}</h4>                                
+                                    <br>
+                                    <span>{{item.commentContent}}</span>
+                                    <br>        
+                                    <span class="pull-righ" style="font-size: 12px">{{item.dateComment}}</span>         
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
